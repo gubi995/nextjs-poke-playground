@@ -1,0 +1,38 @@
+{
+  "name": "nextjs-poke-playground",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write pages/**/*.tsx && prettier --write components/**/*.tsx",
+    "lint": "eslint pages/**/*.tsx && eslint components/**/*.tsx",
+    "fix:lint": "eslint pages/**/*.tsx --fix && eslint components/**/*.tsx --fix"
+  },
+  "dependencies": {
+    "next": "9.2.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.1",
+    "@types/react": "^16.9.20",
+    "@types/styled-components": "^4.4.3",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-styled-components": "^1.10.7",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  }
+}
