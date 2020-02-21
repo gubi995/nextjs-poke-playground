@@ -1,19 +1,31 @@
 import App from 'next/app';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-};
+import { Header, NavigationFooter } from '../components';
+import { theme } from '../theme';
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    background: ${(props) => props.theme.colors.primary};
+  }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+  }
+`;
 
 export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Header />
         <Component {...pageProps} />
+        <NavigationFooter />
       </ThemeProvider>
     );
   }
