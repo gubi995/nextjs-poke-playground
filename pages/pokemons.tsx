@@ -4,10 +4,15 @@ import styled from 'styled-components';
 import fetch from 'isomorphic-unfetch';
 
 import { Button, PokemonLink } from '../components';
+import { API_URL } from './constants';
 
 const ShowMorePokemonButton = styled(Button)`
   display: block;
   margin: auto;
+`;
+
+const StyledContainer = styled.div`
+  margin-bottom: 4em;
 `;
 
 interface Props {
@@ -34,19 +39,19 @@ const Pokemons: NextPage<Props> = ({ pokemons, nextPageUrl }) => {
   };
 
   return (
-    <div>
+    <StyledContainer>
       <ul>
         {pokemonsState.map((pokemon) => (
           <PokemonLink key={pokemon.name} pokemon={pokemon} />
         ))}
       </ul>
       <ShowMorePokemonButton onClick={fetchNextPage}>Show more pokemon</ShowMorePokemonButton>
-    </div>
+    </StyledContainer>
   );
 };
 
 Pokemons.getInitialProps = async (): Promise<Props> => {
-  return await fetchPokemons('https://pokeapi.co/api/v2/pokemon');
+  return await fetchPokemons(API_URL);
 };
 
 export default Pokemons;
