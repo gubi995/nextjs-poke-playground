@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 
-import StyledLink from './StyledLink';
+import ActiveLink from './ActiveLink';
 
 const StyledFooter = styled.footer`
   position: fixed;
@@ -18,8 +17,8 @@ const StyledFooter = styled.footer`
 const NavigationFooter = () => {
   return (
     <StyledFooter>
-      <StyledLink href="/" text="Home" />
-      <StyledLink href="/pokemons" text="Pokemons" />
+      <ActiveLink href="/" text="Home" />
+      <ActiveLink href="/pokemons" text="Pokemons" />
     </StyledFooter>
   );
 };

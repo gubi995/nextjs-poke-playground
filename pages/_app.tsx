@@ -13,7 +13,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
     min-height: 100vh;
     position: relative;
+    margin-bottom: 4em;
+  }
+  * {
     margin: 0;
+    padding: 0;
+    list-style: none;
   }
 `;
 

@@ -23,7 +23,7 @@ const StyledLinkText = styled.span<LinkTextProps>`
   }
 `;
 
-const StyledLink = ({ href, text }: Props) => {
+const ActiveLink = ({ href, text }: Props) => {
   const router = useRouter();
   const isActive = router.pathname === href;
 
@@ -34,4 +34,4 @@ const StyledLink = ({ href, text }: Props) => {
   );
 };
 
-export default StyledLink;
+export default ActiveLink;
