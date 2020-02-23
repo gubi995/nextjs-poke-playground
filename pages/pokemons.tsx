@@ -5,6 +5,7 @@ import fetch from 'isomorphic-unfetch';
 
 import { Button, PokemonLink } from '../components';
 import { API_URL } from './constants';
+import Pokemon from '../models/pokemon';
 
 const ShowMorePokemonButton = styled(Button)`
   display: block;
@@ -16,7 +17,7 @@ const StyledContainer = styled.div`
 `;
 
 interface Props {
-  pokemons: { name: string; url: string }[];
+  pokemons: Pokemon[];
   nextPageUrl: string;
 }
 

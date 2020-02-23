@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Pokemon from '../models/pokemon';
+
 const StyledLink = styled.li`
   padding: 1em;
 `;
@@ -16,7 +18,7 @@ const StyledMoreDetail = styled.span`
 `;
 
 interface Props {
-  pokemon: { name: string; url: string };
+  pokemon: Pokemon;
 }
 
 const PokemonLink = ({ pokemon }: Props) => {

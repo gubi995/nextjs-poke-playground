@@ -19,6 +19,7 @@ const NavigationFooter = () => {
     <StyledFooter>
       <ActiveLink href="/" text="Home" />
       <ActiveLink href="/pokemons" text="Pokemons" />
+      <ActiveLink href="/favorites" text="Favorites" />
       <ActiveLink href="/bomb" text="Bomb" />
     </StyledFooter>
   );
