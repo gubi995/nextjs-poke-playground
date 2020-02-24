@@ -1,32 +1,30 @@
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import useSWR from 'swr';
 import fetch from 'unfetch';
 
-import { API_URL } from '../constants';
-import { clearScreenDown } from 'readline';
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5em;
-`;
+import { POKE_API_URL } from '../constants';
+import PokemonDetails from '../../components/PokemonDetails';
+import PokemonService from '../../services/pokemon-service';
 
 const fetcher = async (path) => {
-  const res = await fetch(path);
+  const [res, favoritePokemon] = await Promise.all([await fetch(path), PokemonService.getFavoritePokemon()]);
 
   if (!res.ok) {
     throw new Error('Pokemon not found');
   }
 
-  return await res.json();
+  const pokemon = await res.json();
+
+  if (pokemon.name === favoritePokemon?.name) {
+    pokemon.favorite = true;
+  }
+
+  return pokemon;
 };
 
 const Pokemon = () => {
   const { id } = useRouter().query;
-  const { data, error } = useSWR(`${API_URL}/${id}`, fetcher);
+  const { data, error } = useSWR(`${POKE_API_URL}/${id}`, fetcher);
 
   if (error) {
     return <h1>Unexpected error: {error.message}</h1>;
@@ -37,24 +35,22 @@ const Pokemon = () => {
   }
 
   const name = data.name;
-  const imgSource = data.sprites.front_default;
+  const imageUrl = data.sprites.front_default;
   const weight = data.weight;
   const types = data.types.map((t) => t.type.name);
+  const favorite = data.favorite;
 
   return (
-    <StyledContainer>
-      <h1>
-        {name} # {id}
-      </h1>
-      <img src={imgSource} alt="Pokemon image" />
-      <p>Weight: {weight}</p>
-      <p>
-        Types:{' '}
-        {types.map((type) => (
-          <span key={type}>{type} ⚡ </span>
-        ))}
-      </p>
-    </StyledContainer>
+    <PokemonDetails
+      pokemon={{
+        id: id as string,
+        name,
+        imageUrl,
+        weight,
+        types,
+        favorite,
+      }}
+    />
   );
 };
 

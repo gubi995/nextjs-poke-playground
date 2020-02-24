@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
 import styled from 'styled-components';
-import fetch from 'isomorphic-unfetch';
 
 import { Button, PokemonLink } from '../components';
-import { API_URL } from './constants';
+import { POKE_API_URL } from './constants';
 import Pokemon from '../models/pokemon';
+import PokemonService from '../services/pokemon-service';
 
 const ShowMorePokemonButton = styled(Button)`
   display: block;
@@ -21,19 +21,12 @@ interface Props {
   nextPageUrl: string;
 }
 
-const fetchPokemons = async (url: string): Promise<Props> => {
-  const response = await fetch(url);
-  const { results, next } = await response.json();
-
-  return { pokemons: results, nextPageUrl: next };
-};
-
 const Pokemons: NextPage<Props> = ({ pokemons, nextPageUrl }) => {
   const [pokemonsState, setPokemons] = useState(pokemons);
   const [nextPageUrlState, setNextPageUrl] = useState(nextPageUrl);
 
   const fetchNextPage = async () => {
-    const { pokemons, nextPageUrl } = await fetchPokemons(nextPageUrlState);
+    const { pokemons, nextPageUrl } = await PokemonService.fetchPokemons(nextPageUrlState);
 
     setPokemons((prevPokemons) => [...prevPokemons, ...pokemons]);
     setNextPageUrl(nextPageUrl);
@@ -52,7 +45,7 @@ const Pokemons: NextPage<Props> = ({ pokemons, nextPageUrl }) => {
 };
 
 Pokemons.getInitialProps = async (): Promise<Props> => {
-  return await fetchPokemons(API_URL);
+  return await PokemonService.fetchPokemons(POKE_API_URL);
 };
 
 export default Pokemons;
