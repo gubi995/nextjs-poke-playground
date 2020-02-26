@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import fetch from 'unfetch';
 
-import { POKE_API_URL } from '../constants';
+import { POKE_API_URL } from '../../constants';
 import PokemonDetails from '../../components/PokemonDetails';
 import PokemonService from '../../services/pokemon-service';
 

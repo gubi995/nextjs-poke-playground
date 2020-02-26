@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { Button, PokemonLink } from '../components';
-import { POKE_API_URL } from './constants';
+import { POKE_API_URL } from '../constants';
 import Pokemon from '../models/pokemon';
 import PokemonService from '../services/pokemon-service';
 

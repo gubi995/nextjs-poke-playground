@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 
-import { SERVER_API_URL } from '../pages/constants';
+import { SERVER_API_URL } from '../constants';
 import Pokemon from '../models/pokemon';
 
 class PokemonService {
