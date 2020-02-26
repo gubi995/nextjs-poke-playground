@@ -1,11 +1,11 @@
 import fetch from 'isomorphic-unfetch';
 
-import { SERVER_API_URL } from '../constants';
+import { FAVORITE_API_URL } from '../constants';
 import Pokemon from '../models/pokemon';
 
 class PokemonService {
   static async getFavoritePokemon(): Promise<Pokemon> {
-    const response = await fetch(`${SERVER_API_URL}/favorite`);
+    const response = await fetch(FAVORITE_API_URL);
 
     if (!response.ok) {
       return null;
@@ -17,7 +17,7 @@ class PokemonService {
   }
 
   static async saveFavoritePokemon(pokemon: Pokemon): Promise<boolean> {
-    const response = await fetch(`${SERVER_API_URL}/favorite`, {
+    const response = await fetch(FAVORITE_API_URL, {
       headers: { 'Content-Type': 'application/json' },
       method: 'post',
       body: JSON.stringify({ ...pokemon, favorite: true }),
