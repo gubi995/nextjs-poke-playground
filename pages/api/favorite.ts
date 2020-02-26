@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { writeFileSync, readFileSync } from 'fs';
 
-const DB_PATH = './favoritePokemons.json';
+const DB_PATH = './public/favoritePokemons.json';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
